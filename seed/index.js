@@ -17,6 +17,7 @@ const carCategory = new CarCategory({
 });
 
 const cars = [];
+const customers = []
 
 for (let index = 0; index < ITEMS_AMOUNT; index++) {
   const car = new Car({
@@ -26,13 +27,23 @@ for (let index = 0; index < ITEMS_AMOUNT; index++) {
     available: true,
     releaseYear: faker.date.past().getFullYear(),
   });
+
+  const customer = new Customer({
+    id: faker.random.uuid(),
+    name: faker.name.findName(),
+    age: faker.random.number({min: 10, max:60}),
+  })
+
   carCategory.carIds.push(car.id);
   cars.push(car);
+  customers.push(customer)
 }
 
-const write = (filename, data) => writeFile(join(seederBaseFolder, filename), JSON.stringify(data));
+const write = (filename, data) =>
+  writeFile(join(seederBaseFolder, filename), JSON.stringify(data));
 
-;(async () => {
-    await write('cars.json', cars)
-    await write('carCategories.json', [carCategory])
+(async () => {
+  await write("cars.json", cars);
+  await write("carCategories.json", [carCategory]);
+  await write("customer.json", customers);
 })();
