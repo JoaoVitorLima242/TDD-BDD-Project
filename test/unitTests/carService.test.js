@@ -59,7 +59,7 @@ describe("CarService Suite Tests", () => {
       .stub(carService.carRepository, carService.carRepository.find.name)
       .returns(car);
 
-    sandbox.spy(carService, carService.chooseRandomCar.name);
+    sandbox.stub(carService, carService.chooseRandomCar.name).returns(car.id);
 
     const result = await carService.getAvailableCar(carCategory);
     const expected = car;

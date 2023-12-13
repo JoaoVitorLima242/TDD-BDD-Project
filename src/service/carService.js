@@ -6,26 +6,24 @@ class CarService {
   }
 
   async getAvailableCar(carCategory) {
-    const carId = this.chooseRandomCar(carCategory)
+    const carId = this.chooseRandomCar(carCategory);
 
-    const car = await this.carRepository.find(carId)
+    const car = await this.carRepository.find(carId);
 
     return car;
   }
 
   chooseRandomCar(carCategory) {
-    const randomCarIndex = this.getRandomPositionFromArray(carCategory.carIds)
-    const carId = carCategory.carIds[randomCarIndex]
+    const randomCarIndex = this.getRandomPositionFromArray(carCategory.carIds);
+    const carId = carCategory.carIds[randomCarIndex];
 
-    return carId
+    return carId;
   }
 
   getRandomPositionFromArray(list) {
-    const listLength = list.length
-    
-    return Math.floor(
-      Math.random() * (listLength)
-    )
+    const listLength = list.length;
+
+    return Math.floor(Math.random() * listLength);
   }
 }
 
