@@ -5,7 +5,7 @@ class CarService {
     this.carRepository = new BaseRepository({ file: cars });
   }
 
-  test() {
+  async getAvailableCar() {
     return this.carRepository.find();
   }
 }
