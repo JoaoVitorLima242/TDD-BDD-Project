@@ -68,4 +68,23 @@ describe("CarService Suite Tests", () => {
     expect(carService.carRepository.find.calledWithExactly(car.id)).to.be.ok;
     expect(result).to.be.deep.equal(expected);
   });
+
+  it("given a carCategory, customer and number of days it should calculate final amount in real", () => {
+    const customer = Object.create(mocks.validCustomer);
+    customer.age = 50;
+
+    const carCategory = Object.create(mocks.validCarCategory);
+    carCategory.price = 37.6;
+
+    const numberPerDays = 5;
+
+    const expected = carService.currencyFormat.format(244.4);
+    const result = carService.calculateFinalPrice(
+      customer,
+      carCategory,
+      numberPerDays
+    );
+
+    expect(result).to.be.equal(expected);
+  });
 });
